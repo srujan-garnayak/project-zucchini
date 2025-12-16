@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RefundPolicyPage() {
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-blue-50 py-16 px-6">
+      <section className="bg-gray-50 py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <H1 className="text-slate-900 mb-4">Refund Policy</H1>
           <p className="text-slate-600">Nitrutsav 2026</p>
@@ -42,7 +42,7 @@ export default function RefundPolicyPage() {
             circumstances. This applies to all ticket types, event passes, and additional purchases
             made through our website.
           </P>
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+          <div className="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6">
             <p className="text-blue-900 font-semibold">Important:</p>
             <p className="text-blue-800">
               We highly recommend double-checking your availability before confirming your

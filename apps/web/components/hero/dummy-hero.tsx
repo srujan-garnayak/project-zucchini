@@ -6,7 +6,7 @@ export default function DummyHero() {
       <div className="max-w-6xl mx-auto px-6 py-20 text-center">
         <H1 className="text-6xl font-bold text-gray-900 mb-6">NITRUTSAV 2026</H1>
         <P className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Coming soon — stay tuned for updates.
+          The annual cultural and literary fest of NIT Rourkela
         </P>
       </div>
     </div>

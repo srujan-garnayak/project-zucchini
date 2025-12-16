@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function CodeOfConductPage() {
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-blue-50 py-16 px-6">
+      <section className="bg-gray-50 py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <H1 className="text-slate-900 mb-4">Code of Conduct</H1>
           <p className="text-slate-600">Last updated: 15th December, 2025</p>
@@ -130,7 +130,7 @@ export default function CodeOfConductPage() {
             safe, welcoming, and enjoyable experience for everyone.
           </P>
 
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mt-8">
+          <div className="bg-gray-50 border-l-4 border-blue-500 p-6 mt-8">
             <p className="text-blue-900 font-semibold mb-2">Remember:</p>
             <p className="text-blue-800">
               Nitrutsav 2026 is a celebration of culture, creativity, and community. Let's work
