@@ -12,7 +12,11 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,mjs,cjs}\"",
     "check-types": "turbo run check-types",
     "typecheck": "turbo run typecheck",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "db:generate": "pnpm --filter @repo/database db:generate",
+    "db:push": "pnpm --filter @repo/database db:push",
+    "db:migrate": "pnpm --filter @repo/database db:migrate",
+    "db:studio": "pnpm --filter @repo/database db:studio"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
