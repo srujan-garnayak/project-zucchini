@@ -119,7 +119,7 @@ export const RegistrationSchema = z.object({
 
   idCard: z.string().url(MESSAGES.REQUIRED("ID Card")),
 
-  payment: z.string().url(MESSAGES.REQUIRED("Payment receipt")),
+  // payment: z.string().url(MESSAGES.REQUIRED("Payment receipt")),
 
   rollNumber: z.string().min(1, MESSAGES.REQUIRED("Roll number")),
 
@@ -143,7 +143,7 @@ export const RegistrationSchema = z.object({
 
   campusAmbassador: z.boolean().optional(),
 
-  transactionID: z.string().min(1, MESSAGES.REQUIRED("Transaction ID")),
+  // transactionID: z.string().min(1, MESSAGES.REQUIRED("Transaction ID")),
 
   registeredAt: z
     .date()

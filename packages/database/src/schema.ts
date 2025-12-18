@@ -31,7 +31,7 @@ export const transactionsTable = pgTable("transactions", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
   paymentReceipt: text().notNull(),
   transactionId: varchar({ length: 255 }).notNull(),
-  paymentMethod: paymentMethodEnum().notNull(),
+  paymentMethod: paymentMethodEnum(),
   isVerified: boolean().notNull().default(false),
   verifiedAt: timestamp(),
   createdAt: timestamp().notNull().defaultNow(),
