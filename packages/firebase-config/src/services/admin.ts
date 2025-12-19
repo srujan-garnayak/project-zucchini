@@ -16,15 +16,3 @@ export const loginAdmin = async (email: string) => {
     handleError(error, "Admin login failed");
   }
 };
-
-export const verifyUser = async (docId: string) => {
-  try {
-    const userRef = doc(db, "users", docId);
-    await updateDoc(userRef, {
-      isVerified: true,
-    });
-    return true;
-  } catch (error) {
-    handleError(error, "User verification failed");
-  }
-};
