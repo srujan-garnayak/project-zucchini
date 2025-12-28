@@ -1,8 +1,5 @@
 "use client";
 
-import Navbar from "../marginals/navbar";
-import CountdownTimer from "../hero/countdown-timer";
-import MusicVisualizer from "../hero/music-visualizer";
 import Image from "next/image";
 import {
   FlagshipEvents,
@@ -13,8 +10,10 @@ import {
   Images,
 } from "@/config/events";
 import EventSwiper from "./eventswiper";
+import EventInfo from "./eventinfo";
+import EventCategory from "./eventcatagory";
 import { useState, useRef, useEffect } from "react";
-import { inriaSans, calistoga, berkshireSwash } from "@/fonts";
+import { inriaSans, calistoga, berkshireSwash, baloo } from "@/fonts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -24,11 +23,11 @@ const categories: Record<string, any[]> = {
   "Pro Shows": ProShows,
   "Fun Events": FunEvents,
   "Main Events": MainEvents,
-  Workshops: WorkshopandExihibition,
+  "Workshops and Exhibition": WorkshopandExihibition,
 };
 
 export default function Event() {
-  const [activeCategory, setActiveCategory] = useState("Pro Shows");
+  const [activeCategory, setActiveCategory] = useState("Flagship Events");
   const [activeIndex, setActiveIndex] = useState(0);
   const textSwiperRef = useRef<any>(null);
 
@@ -79,84 +78,26 @@ export default function Event() {
       />
 
       {/* MAIN CONTENT */}
-      <div className="relative z-10 flex flex-col w-full min-h-screen md:pt-10 pb-20">
-        {/* TOP SECTION */}
-        <div className="flex flex-col w-full gap-2 md:gap-8">
-          <Navbar />
-          <CountdownTimer />
-          <MusicVisualizer />
-        </div>
-
+      <div className="relative z-10 flex flex-col w-full min-h-screen ">
         {/* HERO SWIPER */}
-        <div className="flex flex-col items-center justify-center mt-16 md:mt-36 mb-8">
+        <div className="flex flex-col items-center justify-center mt-6 md:mt-8 mb-6">
           <EventSwiper events={currentEvents} onSlideChange={setActiveIndex} />
         </div>
 
         {/* EVENT INFO & CATEGORY MENU */}
-        <div className="w-full max-w-[90vw] mx-auto mt-8 flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-14 px-4 text-white">
+        <div className="w-full max-w-[90vw] mx-auto mt-2 mb-2 flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-14 px-4 text-white">
           {/* LEFT: EVENT DETAILS (VERTICAL SWIPER) */}
-          <div className="h-[200px] md:h-[300px] w-full overflow-hidden">
-            <Swiper
-              direction="vertical"
-              onSwiper={(swiper) => (textSwiperRef.current = swiper)}
-              allowTouchMove={false}
-              slidesPerView={1}
-              spaceBetween={20}
-              speed={500}
-              className="h-full"
-            >
-              {currentEvents.map((event, idx) => (
-                <SwiperSlide key={idx} className="flex flex-col justify-center gap-6">
-                  <h1 className="text-5xl md:text-7xl font-calistoga uppercase tracking-wide text-white">
-                    {event.name}
-                  </h1>
-                  <p className="text-xl md:text-2xl font-berkshire leading-relaxed text-white max-w-xl">
-                    {event.description}
-                  </p>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+          <EventInfo
+            events={currentEvents}
+            onSwiper={(swiper) => (textSwiperRef.current = swiper)}
+          />
 
           {/* RIGHT: CATEGORY MENU */}
-          <div className="flex flex-col items-end justify-start gap-3 pt-2 pr-4">
-            {Object.keys(categories).map((category) => {
-              const isActive = activeCategory === category;
-              return (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`
-                                        group relative flex items-center text-xl uppercase tracking-wider transition-all duration-300 font-calistoga
-                                        ${isActive ? "scale-110" : "font-light text-white hover:text-white/80"}
-                                    `}
-                >
-                  {/* TEXT WITH GRADIENT IF ACTIVE */}
-                  <span
-                    className={
-                      isActive
-                        ? "bg-clip-text text-transparent bg-gradient-to-l from-[#EA0B0F] via-[#F3BC16] to-[#FF0092]"
-                        : ""
-                    }
-                  >
-                    {category}
-                  </span>
-
-                  {/* ICON IF ACTIVE */}
-                  {isActive && (
-                    <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 w-8 h-8">
-                      <Image
-                        src={Images.iconimage}
-                        alt="Active Icon"
-                        fill
-                        className="object-contain rotate-90"
-                      />
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+          <EventCategory
+            categories={Object.keys(categories)}
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
         </div>
       </div>
     </div>
