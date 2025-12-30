@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { fonts } from "@/fonts";
 import { Toaster } from "sonner";
-import Loader from "@/components/loader";
-
 import { AuthProvider } from "@/contexts/auth-context";
 import Header from "../components/marginals/navbar2";
 import Footer from "../components/marginals/footer";
@@ -23,7 +21,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fonts}`}>
         <AuthProvider>
-          <Loader />
           <Header />
           {children}
           <Footer />
