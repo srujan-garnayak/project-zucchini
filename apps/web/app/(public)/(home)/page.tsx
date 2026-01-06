@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Hero from "@/components/hero";
 import NitrutsavText from "@/components/hero/nitrutsav-text";
 import Image from "next/image";
-import { HERO_IMAGES } from "@/config/hero";
+import { HERO_IMAGES, LOADER_IMAGES } from "@/config/hero";
 import { useAudio } from "@/contexts/audio-context";
 
 const IMAGES_TO_PRELOAD = [
@@ -19,6 +19,8 @@ const IMAGES_TO_PRELOAD = [
   "/loading.webp",
   "/gdg.png",
   "/ink-spread-5.gif",
+  LOADER_IMAGES.background,
+  LOADER_IMAGES.inkSplash,
 ];
 
 export default function Home() {
@@ -113,10 +115,10 @@ export default function Home() {
       {showPreloader && (
         <div
           onClick={handleStart}
-          className="fixed inset-0 z-9999 flex items-center justify-center bg-transparent cursor-pointer"
+          className="fixed inset-0 z-9999 flex items-center justify-center bg-white cursor-pointer"
         >
           <Image
-            src="/loading.webp"
+            src={LOADER_IMAGES.background}
             alt="Loading background"
             fill
             className="object-cover"
@@ -164,12 +166,12 @@ export default function Home() {
 
       <style jsx global>{`
           .ink-mask {
-          mask-image: url("/ink-spread-5.gif");
+          mask-image: url("${LOADER_IMAGES.inkSplash}");
           mask-repeat: no-repeat;
           mask-size: cover;
           mask-position: center;
 
-          -webkit-mask-image: url("/ink-spread-5.gif");
+          -webkit-mask-image: url("${LOADER_IMAGES.inkSplash}");
           -webkit-mask-repeat: no-repeat;
           -webkit-mask-size: cover;
           -webkit-mask-position: center;

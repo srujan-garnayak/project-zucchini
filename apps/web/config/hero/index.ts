@@ -34,6 +34,12 @@ export const HERO_IMAGES = {
   logo: "https://res.cloudinary.com/drf3eatfm/image/upload/v1767557161/nitrutsav-2026/bfh824fnvifwdlpuf8vn.png",
 } as const;
 
+export const LOADER_IMAGES = {
+  background: "https://res.cloudinary.com/dz4lwydkp/image/upload/v1767698678/loading_pm1kpp.jpg",
+  inkSplash:
+    "https://res.cloudinary.com/dz4lwydkp/image/upload/v1767698698/ink-spread-5_bges7b.gif",
+};
+
 export const PARALLAX_MOUSE = {
   background: { x: 0.3, y: 0.15 },
   girl: { x: 2, y: 0.9 },
