@@ -2,7 +2,9 @@ import TitleSponsors from "@/components/sponsors/title";
 import React, { JSX } from "react";
 import PlatinumSponsors from "../../../components/sponsors/platinum";
 import { background } from "@/config/sponsors";
+import { generatePageMetadata } from "@/config/seo";
 
+export const metadata = generatePageMetadata("sponsors");
 export default function SponsorsPage(): JSX.Element {
   return (
     <div className="bg-[#010005] w-full  relative text-white grid place-items-center min-h-screen">

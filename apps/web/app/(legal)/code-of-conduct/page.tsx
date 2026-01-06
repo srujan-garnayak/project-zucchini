@@ -86,13 +86,16 @@ export default function CodeOfConductPage() {
             {
               group: "Convenors",
               people: [
-                { label: "Convenor", name: "Sidheswar Mahananda", phone: "6371872187" },
-                { label: "Convenor", name: "Shiba Nanda Sethy", phone: "7682866577" },
+                { label: "Convenor", name: "Shiba Nanda Sethy", phone: "+91-76828 66577" },
+                { label: "Convenor", name: "Sidheswar Mahananda", phone: "+91-63718 72187" },
               ],
             },
             {
               group: "Organizing Team",
-              people: [{ label: "Organizer", name: "Debadutta Nayak", phone: "7855034580" }],
+              people: [
+                { label: "Organizer", name: "Debadutta Nayak", phone: "+91-78550 34580" },
+                { label: "Organizer", name: "Shrinmaya Mallick", phone: "+91-72052 73401" },
+              ],
             },
           ]}
         />
