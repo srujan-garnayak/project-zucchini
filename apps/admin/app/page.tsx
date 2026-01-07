@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { Users, Gavel, TrendingUp, ArrowRight, CheckCircle, Clock, Share2 } from "lucide-react";
 import { useNitrutsavStats, useMunStats, useReferralLeaderboard } from "@/lib/queries";
+import { useAuth } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function DashboardCard({
   title,
@@ -50,6 +53,16 @@ export default function AdminPage() {
   const { data: nitrutsavStats, isLoading: nitrutsavLoading } = useNitrutsavStats();
   const { data: munStats, isLoading: munLoading } = useMunStats();
   const { data: referralData, isLoading: referralLoading } = useReferralLeaderboard();
+  const { role } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (role === "NU") {
+      router.push("/nitrutsav");
+    } else if (role === "MUN") {
+      router.push("/mun");
+    }
+  }, [role, router]);
 
   const loading = nitrutsavLoading || munLoading || referralLoading;
 
@@ -61,9 +74,16 @@ export default function AdminPage() {
     );
   }
 
-  const totalRegistrations = (nitrutsavStats?.total || 0) + (munStats?.total || 0);
-  const totalVerified = (nitrutsavStats?.verified || 0) + (munStats?.verified || 0);
-  const totalPending = (nitrutsavStats?.pending || 0) + (munStats?.pending || 0);
+  const showNitrutsav = role === "ADMIN" || role === "NU";
+  const showMun = role === "ADMIN" || role === "MUN";
+
+  const totalRegistrations =
+    ((showNitrutsav ? nitrutsavStats?.total : 0) || 0) + ((showMun ? munStats?.total : 0) || 0);
+  const totalVerified =
+    ((showNitrutsav ? nitrutsavStats?.verified : 0) || 0) +
+    ((showMun ? munStats?.verified : 0) || 0);
+  const totalPending =
+    ((showNitrutsav ? nitrutsavStats?.pending : 0) || 0) + ((showMun ? munStats?.pending : 0) || 0);
 
   return (
     <div className="min-h-screen p-8">
@@ -97,7 +117,7 @@ export default function AdminPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {nitrutsavStats && (
+        {showNitrutsav && nitrutsavStats && (
           <DashboardCard
             title="NITRUTSAV"
             href="/nitrutsav"
@@ -111,7 +131,7 @@ export default function AdminPage() {
             ]}
           />
         )}
-        {munStats && (
+        {showMun && munStats && (
           <DashboardCard
             title="MUN"
             href="/mun"

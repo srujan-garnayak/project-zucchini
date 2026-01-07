@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="min-h-screen ">
-      <div className="mx-auto max-w-7xl rounded-xl border border-zinc-800 bg-zinc-900 shadow-lg">
+      <div className="mx-auto w-full rounded-xl border border-zinc-800 bg-zinc-900 shadow-lg">
         {/* ===== TABLE ===== */}
         <div className="overflow-hidden">
           <Table>

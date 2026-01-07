@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     return handleResponse({
       isRegistered: !!admin,
       isVerified: admin?.isVerified || false,
+      role: admin?.role || null,
     });
   } catch (error) {
     return handleApiError(error, "Check failed");

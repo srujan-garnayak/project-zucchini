@@ -33,6 +33,7 @@ export const registerAdmin = async (firebaseUid: string, email: string, name: st
       firebaseUid,
       email,
       name,
+      role: "NU",
       isVerified: false,
     })
     .returning();

@@ -62,11 +62,14 @@ export const transactionsTable = pgTable("transactions", {
   updatedAt: timestamp().notNull().defaultNow(),
 });
 
+export const adminRoleEnum = pgEnum("admin_role", ["ADMIN", "NU", "MUN"]);
+
 export const adminsTable = pgTable("admins", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   firebaseUid: varchar({ length: 128 }).notNull().unique(),
   email: varchar({ length: 255 }).notNull().unique(),
   name: varchar({ length: 255 }),
+  role: adminRoleEnum().notNull().default("NU"),
   isVerified: boolean().notNull().default(false),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
