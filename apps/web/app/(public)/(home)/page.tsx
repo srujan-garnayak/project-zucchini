@@ -16,9 +16,6 @@ const IMAGES_TO_PRELOAD = [
   HERO_IMAGES.owlRight,
   HERO_IMAGES.peacockLeft,
   HERO_IMAGES.logo,
-  "/loading.webp",
-  "/gdg.png",
-  "/ink-spread-5.gif",
   LOADER_IMAGES.background,
   LOADER_IMAGES.inkSplash,
 ];

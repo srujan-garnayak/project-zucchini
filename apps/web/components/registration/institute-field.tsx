@@ -38,13 +38,13 @@ export default function InstituteField({
           <SearchableSelect
             options={[
               ...collegeOptions.map((c) => ({ label: c.label, value: c.value })),
-              { label: "Other (Enter manually)", value: OTHER_COLLEGE_VALUE },
+              { label: "Others", value: OTHER_COLLEGE_VALUE },
             ]}
             value={value}
             onChange={onInstituteChange}
             placeholder="Search for your college..."
             error={instituteError}
-            allowCustom={true}
+            allowCustom={false}
             customPlaceholder="Enter your college/institute name..."
           />
         )}
@@ -60,10 +60,10 @@ export default function InstituteField({
           value={universityValue || ""}
           onChange={(e) => onUniversityChange(e.target.value)}
           placeholder="Enter your university name"
-          disabled={isNitrStudent}
+          disabled={isNitrStudent || value === OTHER_COLLEGE_VALUE}
           className={`w-full px-3 py-2 text-sm font-semibold input-field focus:outline-none transition-all ${
             universityError ? "border-red-500" : ""
-          } ${isNitrStudent ? "opacity-50 cursor-not-allowed" : ""}`}
+          } ${isNitrStudent || value === OTHER_COLLEGE_VALUE ? "opacity-50 cursor-not-allowed" : ""}`}
         />
         {universityError && <p className="mt-0.5 text-xs text-red-400">{universityError}</p>}
       </div>

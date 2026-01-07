@@ -2,6 +2,7 @@ import { integer, pgTable, varchar, timestamp, boolean, text, pgEnum } from "dri
 
 export const genderEnum = pgEnum("gender", ["MALE", "FEMALE"]);
 export const transactionTypeEnum = pgEnum("transaction_type", ["NITRUTSAV", "MUN"]);
+export const transactionStatusEnum = pgEnum("transaction_status", ["success", "error"]);
 
 export const studentTypeEnum = pgEnum("student_type", ["SCHOOL", "COLLEGE"]);
 export const munCommitteeEnum = pgEnum("mun_committee", [
@@ -56,6 +57,7 @@ export const transactionsTable = pgTable("transactions", {
   type: transactionTypeEnum().notNull(),
   amount: integer().notNull(),
   isVerified: boolean().notNull().default(false),
+  status: transactionStatusEnum(),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });

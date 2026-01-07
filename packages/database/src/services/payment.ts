@@ -49,6 +49,18 @@ export const updatePaymentStatusByTxnId = async (txnId: string, isVerified: bool
   });
 };
 
+export type TransactionStatus = "success" | "failure";
+
+export const updateTransactionStatus = async (txnId: string, status: TransactionStatus) => {
+  const [transaction] = await db
+    .update(transactionsTable)
+    .set({ status })
+    .where(eq(transactionsTable.txnId, txnId))
+    .returning();
+
+  return transaction;
+};
+
 function generateTxnId(type: TransactionType): string {
   const prefix = type === "NITRUTSAV" ? "NU26" : "MUN26";
   const timestamp = Date.now();

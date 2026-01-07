@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
+import { updateTransactionStatus } from "@repo/database";
 
 function verifyPayuHash(params: Record<string, string>, salt: string): boolean {
   const receivedHash = params.hash;
@@ -32,6 +33,10 @@ export async function POST(req: NextRequest) {
 
     const status = params.status?.toLowerCase();
     const origin = req.nextUrl.origin;
+
+    if (params.txnid) {
+      await updateTransactionStatus(params.txnid, status === "success" ? "success" : "failure");
+    }
 
     if (status === "success") {
       return NextResponse.redirect(

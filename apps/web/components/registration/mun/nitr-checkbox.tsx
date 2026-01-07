@@ -32,19 +32,35 @@ export function NitrCheckbox({
 
       <div className="border-2 border-white/40 rounded-[13px] p-3  backdrop-blur-[10px]">
         <label
-          className={`flex items-center ${lockNitrStatus ? "cursor-not-allowed" : "cursor-pointer"}`}
+          className={`flex items-center group ${lockNitrStatus ? "cursor-not-allowed" : "cursor-pointer"}`}
         >
-          <input
-            type="checkbox"
-            checked={isNitrStudent}
-            onChange={(e) => {
-              if (!lockNitrStatus) {
-                setIsNitrStudent(e.target.checked);
+          <div
+            className={`
+              relative flex items-center justify-center
+              w-6 h-6 rounded-lg transition-all duration-200
+              ${
+                isNitrStudent
+                  ? "border-2 border-white shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                  : "border border-gray-500/60 " +
+                    (!lockNitrStatus ? "group-hover:border-gray-400" : "")
               }
-            }}
-            disabled={lockNitrStatus}
-            className={`w-4 h-4 accent-white focus:ring-white/50 rounded ${lockNitrStatus ? "opacity-50 cursor-not-allowed" : ""}`}
-          />
+              ${lockNitrStatus ? "opacity-50" : ""}
+              bg-white/10
+            `}
+          >
+            <input
+              type="checkbox"
+              checked={isNitrStudent}
+              onChange={(e) => {
+                if (!lockNitrStatus) {
+                  setIsNitrStudent(e.target.checked);
+                }
+              }}
+              disabled={lockNitrStatus}
+              className="sr-only"
+            />
+            {isNitrStudent && <span className="w-2 h-2 rounded-full bg-white" />}
+          </div>
           <span className={`ml-2 text-sm font-semibold text-white`}>
             {stepTitle ? `Is ${stepTitle} from NIT Rourkela?` : "I am from NIT Rourkela"}
           </span>

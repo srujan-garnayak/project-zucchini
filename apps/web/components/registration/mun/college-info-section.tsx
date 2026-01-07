@@ -82,7 +82,7 @@ export function CollegeInfoSection({
                   !isNitrStudent &&
                   c.value.toLowerCase().includes("nit rourkela"),
               })),
-              { label: "Other (Enter manually)", value: OTHER_COLLEGE_VALUE },
+              { label: "Others", value: OTHER_COLLEGE_VALUE },
             ]}
             value={formData.institute}
             onChange={(value) => {
@@ -98,6 +98,9 @@ export function CollegeInfoSection({
                 handleFieldChange("university", selectedCollege.value);
                 handleFieldChange("city", selectedCollege.city);
                 handleFieldChange("state", selectedCollege.state);
+              } else if (value === OTHER_COLLEGE_VALUE) {
+                handleFieldChange("institute", OTHER_COLLEGE_VALUE);
+                handleFieldChange("university", OTHER_COLLEGE_VALUE);
               } else {
                 handleFieldChange("institute", value);
               }
@@ -106,7 +109,7 @@ export function CollegeInfoSection({
             placeholder="Search for your college..."
             disabled={isNitrStudent}
             error={errors.institute}
-            allowCustom={true}
+            allowCustom={false}
             customPlaceholder="Enter your college/institute name..."
           />
         </div>
@@ -141,7 +144,7 @@ export function CollegeInfoSection({
             ? "Enter your board (CBSE, ICSE, State Board, etc.)"
             : "Enter your university name"
         }
-        readonly={isNitrStudent}
+        readonly={isNitrStudent || formData.institute === OTHER_COLLEGE_VALUE}
         error={errors.university}
         required
       />

@@ -2,9 +2,9 @@
 
 import { db } from "../index";
 import { munRegistrationsTable, transactionsTable, usersTable } from "../schema";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, aliasedTable, or } from "drizzle-orm";
 import { MunRegistrationSchema, validateAndThrow, type MunRegistration } from "@repo/shared-types";
-import { getUserByFirebaseUid } from "./user";
+
 import { MUN_FEE } from "../../../../apps/web/config";
 
 const generateTeamIdFromRowId = (rowId: number): string => {
@@ -185,35 +185,55 @@ export const getMunRegistrationFee = (
 };
 
 export const checkCrossRegistration = async (firebaseUid: string) => {
-  const munUser = await getMunUserByFirebaseUid(firebaseUid);
-  if (munUser) {
+  const munTx = aliasedTable(transactionsTable, "mun_tx");
+  const userTx = aliasedTable(transactionsTable, "user_tx");
+
+  const [row] = await db
+    .select({
+      mun: munRegistrationsTable,
+      user: usersTable,
+      munIsVerified: munTx.isVerified,
+      userIsVerified: userTx.isVerified,
+    })
+    .from(munRegistrationsTable)
+    .fullJoin(usersTable, eq(munRegistrationsTable.firebaseUid, usersTable.firebaseUid))
+    .leftJoin(munTx, and(eq(munRegistrationsTable.teamId, munTx.teamId), eq(munTx.type, "MUN")))
+    .leftJoin(userTx, eq(usersTable.id, userTx.userId))
+    .where(
+      or(
+        eq(munRegistrationsTable.firebaseUid, firebaseUid),
+        eq(usersTable.firebaseUid, firebaseUid)
+      )
+    )
+    .limit(1);
+
+  if (row?.mun) {
     return {
       isMunRegistered: true,
       isNitrutsavRegistered: true, // MUN = NITRUTSAV
       registrationType: "MUN" as const,
-      userId: munUser.id,
-      name: munUser.name,
-      email: munUser.email,
+      userId: row.mun.id,
+      name: row.mun.name,
+      email: row.mun.email,
       referralCode: null, // MUN registrations don't have referral codes
-      isPaymentVerified: munUser.isPaymentVerified,
-      isNitrStudent: munUser.isNitrStudent,
-      isVerified: munUser.isVerified,
+      isPaymentVerified: row.munIsVerified || false,
+      isNitrStudent: row.mun.isNitrStudent,
+      isVerified: row.mun.isVerified,
     };
   }
 
-  const nitrutsavUser = await getUserByFirebaseUid(firebaseUid);
-  if (nitrutsavUser) {
+  if (row?.user) {
     return {
       isMunRegistered: false,
       isNitrutsavRegistered: true,
       registrationType: "NITRUTSAV" as const,
-      userId: nitrutsavUser.id,
-      name: nitrutsavUser.name,
-      email: nitrutsavUser.email,
-      referralCode: nitrutsavUser.referralCode,
-      isPaymentVerified: nitrutsavUser.isPaymentVerified,
-      isNitrStudent: nitrutsavUser.isNitrStudent,
-      isVerified: nitrutsavUser.isVerified,
+      userId: row.user.id,
+      name: row.user.name,
+      email: row.user.email,
+      referralCode: row.user.referralCode,
+      isPaymentVerified: row.userIsVerified || false,
+      isNitrStudent: row.user.isNitrStudent,
+      isVerified: row.user.isVerified,
     };
   }
 

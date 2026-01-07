@@ -7,6 +7,7 @@ import { footerLinks, footerImages } from "@/config/marginals/footer";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { cn } from "@/lib/utils";
+import Button from "../ui/button";
 
 const socialIcons: Record<string, React.ReactNode> = {
   WhatsApp: <WhatsAppIcon className="w-6 h-6" />,
@@ -21,7 +22,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        "relative w-full font-inria overflow-hidden z-50",
+        "relative w-full font-inria overflow-hidden z-99",
         isTransparent ? "bg-transparent" : "bg-black"
       )}
     >

@@ -24,7 +24,6 @@ export default function RegistrationForm({ user, onComplete }: RegistrationFormP
     isSubmitting,
     submitError,
     setIsNitrStudent,
-    setWantsAccommodation,
     handleInputChange,
     handleInstituteChange,
     handleSubmit,

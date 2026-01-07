@@ -82,6 +82,9 @@ export function useRegistrationForm({ user, onComplete }: UseRegistrationFormPro
     if (selectedCollege) {
       handleInputChange("institute", selectedCollege.value);
       handleInputChange("university", selectedCollege.value);
+    } else if (value === "others") {
+      handleInputChange("institute", "others");
+      handleInputChange("university", "others");
     } else {
       handleInputChange("institute", value);
     }

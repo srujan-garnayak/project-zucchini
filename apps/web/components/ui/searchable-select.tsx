@@ -174,6 +174,25 @@ export default function SearchableSelect({
                   {option.disabled && <span className="ml-2 text-xs">(Not available)</span>}
                 </div>
               ))
+            ) : options.some((o) => o.value === "others") ? (
+              options
+                .filter((o) => o.value === "others")
+                .map((option) => (
+                  <div
+                    key={option.value}
+                    onClick={() => !option.disabled && handleSelect(option.value)}
+                    className={`px-3 py-1.5 text-sm transition-colors ${
+                      option.disabled
+                        ? "text-gray-400 cursor-not-allowed bg-gray-100/50"
+                        : option.value === value
+                          ? "bg-blue-500/30 text-gray-900 cursor-pointer font-semibold"
+                          : "hover:bg-white/50 text-gray-800 cursor-pointer"
+                    } border-t border-gray-300 font-medium text-blue-600`}
+                  >
+                    {option.label}
+                    {option.disabled && <span className="ml-2 text-xs">(Not available)</span>}
+                  </div>
+                ))
             ) : (
               <div className="px-3 py-2 text-xs text-gray-600 text-center">No matches found</div>
             )}
