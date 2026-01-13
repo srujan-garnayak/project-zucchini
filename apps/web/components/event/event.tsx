@@ -30,9 +30,7 @@ export default function Event() {
   const textSwiperRef = useRef<any>(null);
 
   const currentEvents = categories[activeCategory] || ProShows;
-  const activeEvent = currentEvents[activeIndex];
 
-  // Reset to first slide when category changes
   useEffect(() => {
     setActiveIndex(0);
   }, [activeCategory]);
@@ -45,32 +43,6 @@ export default function Event() {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden events-bg py-20">
-      {/* BACKGROUNDS */}
-      {/* <Image
-        src={Images.BackgroundImg2}
-        alt="Color Background"
-        fill
-        className="object-cover opacity-[40%] blur-[50px] contrast-150 brightness-60 saturate-400"
-      />
-
-      <Image
-        src={Images.BackgroundImg1}
-        alt="Base Background"
-        fill
-        className="absolute inset-0 opacity-[70%] blur-[2px] mix-blend-color-dodge grayscale scale-120"
-      />
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src={Images.centreBackgroundImg}
-          alt="Center Background"
-          height={2116}
-          width={712}
-          className="object-contain opacity-[70%] grayscale mix-blend-color-dodge scale-110"
-        />
-      </div> */}
-
-      {/* DARK MASK */}
       <div
         className="
                     absolute inset-0 bg-black/55 pointer-events-none

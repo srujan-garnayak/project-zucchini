@@ -43,3 +43,9 @@ export const contactsSecondRow: ContactPerson[] = [
       "https://res.cloudinary.com/drf3eatfm/image/upload/v1767139442/nitrutsav-2026/eo2bsfu5xno4fe0dqrse.jpg",
   },
 ];
+
+export const instituteInfo = {
+  name: "NATIONAL INSTITUTE OF TECHNOLOGY ROURKELA",
+  location: `SRICCE OFFICE NIT ROURKELA, NATIONAL INSTITUTE
+OF TECHNOLOGY,ROURKELA, SECTOR-02, ROURKELA, Sundargarh, Odisha, 769008`,
+};

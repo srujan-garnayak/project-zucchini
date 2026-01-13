@@ -82,7 +82,7 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden md:flex gap-5 lmd:gap-8 lg:gap-12 text-white font-inria">
+          <nav className="hidden md:flex gap-4 lmd:gap-8 lg:gap-12 text-white font-inria">
             {navItems.map((item) => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -111,7 +111,7 @@ export default function Header() {
           <MobileMusicVisualizer />
         </div>
 
-        <div className="flex items-center gap-4 lg:gap-12">
+        <div className=" flex items-center gap-2 md:gap-4 lmd:gap-12">
           <div className="hidden md:block">
             <CountdownTimer />
           </div>
@@ -120,7 +120,7 @@ export default function Header() {
             <MusicVisualizer />
           </div>
 
-          {/* Mobile Event Category Button - Only visible on events page */}
+          {/* Mobile Event   Category Button - Only visible on events page */}
           {isEventsPage && (
             <button
               onClick={toggleCategoryMenu}
