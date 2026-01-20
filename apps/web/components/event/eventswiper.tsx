@@ -35,10 +35,10 @@ export default function EventSwiper({
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         slidesPerView="auto"
-        spaceBetween={32}
+        spaceBetween={200}
         centeredSlides={false}
         loop={true}
-        slideToClickedSlide={false} // handled manually
+        slideToClickedSlide={false}
         speed={500}
         autoplay={{
           delay: 10000,
