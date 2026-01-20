@@ -47,4 +47,25 @@ With high-energy performances, bold creativity, and roaring cheers, Footloose is
 competition — it’s a celebration of pure dance spirit.`,
     posterurl: `https://res.cloudinary.com/drf3eatfm/image/upload/v1768923870/nitrutsav-2026/gkheoxjxxkp9sxzdishk.jpg`,
   },
+  {
+    club: ``,
+    rulebook: `https://www.drive.com`,
+    name: `Coming Soon`,
+    description: `Coming soon`,
+    posterurl: `https://res.cloudinary.com/dz4lwydkp/image/upload/v1767560704/nitrutsav-2026/e3f3vljzfvu8d5g4zwxx.webp`,
+  },
+  {
+    club: ``,
+    rulebook: `https://www.drive.com`,
+    name: `Coming Soon`,
+    description: `Coming soon`,
+    posterurl: `https://res.cloudinary.com/dz4lwydkp/image/upload/v1767560704/nitrutsav-2026/e3f3vljzfvu8d5g4zwxx.webp`,
+  },
+  {
+    club: ``,
+    rulebook: `https://www.drive.com`,
+    name: `Coming Soon`,
+    description: `Coming soon`,
+    posterurl: `https://res.cloudinary.com/dz4lwydkp/image/upload/v1767560704/nitrutsav-2026/e3f3vljzfvu8d5g4zwxx.webp`,
+  },
 ];
